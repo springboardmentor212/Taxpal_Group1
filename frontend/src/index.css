@@ -321,3 +321,177 @@ select.select-custom option:checked {
 /* small micro-interaction */
 .btn.primary { transition: transform 120ms ease, box-shadow 160ms ease, background 140ms; }
 .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(227,27,27,0.16); }
+
+/* Make dashboard content fit without scrolling */
+/* Make dashboard content fit without scrolling */
+.dashboard {
+  padding: 16px;
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dashboard-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+/* Compact metric cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.stat-card {
+  background: linear-gradient(180deg, rgba(30,30,30,0.9), rgba(15,15,15,0.95));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 10px 32px rgba(0,0,0,0.6);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 2px 0;
+}
+
+.stat-change {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Charts area - make flexible */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.chart-card {
+  background: linear-gradient(180deg, rgba(22,22,22,0.95), rgba(12,12,12,0.95));
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.chart-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+/* Make chart containers fit */
+.chart-card > div:last-child {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Transactions table container - limit height */
+.transactions-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for transactions */
+.transactions-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.transactions-container::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.02);
+  border-radius: 2px;
+}
+
+.transactions-container::-webkit-scrollbar-thumb {
+  background: rgba(255,59,59,0.3);
+  border-radius: 2px;
+}
+
+.transactions-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,59,59,0.5);
+}
+
+/* Compact table styling */
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.transactions-table th {
+  text-align: left;
+  padding: 8px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9aa3b2;
+  position: sticky;
+  top: 0;
+  background: rgba(12,12,12,0.95);
+  z-index: 1;
+}
+
+.transactions-table td {
+  padding: 10px 6px;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.transactions-table tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make main content area not scroll 
+main.flex-1 {
+  overflow: hidden !important;
+  height: calc(100vh - 56px);
+}
+
+main.flex-1 > div {
+  height: 100%;
+}*/

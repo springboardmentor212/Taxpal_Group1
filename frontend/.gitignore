@@ -1,4 +1,6 @@
+# =========================
 # Logs
+# =========================
 logs
 *.log
 npm-debug.log*
@@ -7,12 +9,41 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# =========================
+# Dependencies (CRITICAL)
+# =========================
+node_modules/
+**/node_modules/
+
+# =========================
+# Environment files (CRITICAL)
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Build outputs
+# =========================
 dist
 dist-ssr
+build
+coverage
+
+# =========================
+# Local config files
+# =========================
 *.local
 
-# Editor directories and files
+# =========================
+# Lock files (ONLY if duplicated at wrong level)
+# =========================
+# Ignore accidental root lock file
+/package-lock.json
+
+# =========================
+# IDE / Editor files
+# =========================
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +53,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# =========================
+# OS files
+# =========================
+Thumbs.db
+
+# =========================
+# Runtime / temp files
+# =========================
+tmp
+temp
+.cache

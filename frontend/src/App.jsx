@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Forgot from "./pages/Forgot";
 import ResetNew from "./pages/ResetNew";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 export default function App() {
   return (
@@ -17,8 +18,17 @@ export default function App() {
       <Route path="/forgot" element={<Forgot />} />
       {/* New: one dedicated page to enter the NEW password after OTP verification */}
       <Route path="/reset-new" element={<ResetNew />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
+
     </Routes>
   );
 }
