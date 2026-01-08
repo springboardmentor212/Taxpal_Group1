@@ -1,87 +1,106 @@
-// src/server.js
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
+const taxRoutes = require("./routes/tax");
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+
+const auth = require("./middleware/auth"); //IMPORT AUTH
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// basic middleware
-app.use(morgan('dev')); // request logging
-app.use(express.json({ limit: '100kb' })); // parse JSON before routes
+/* --------------------
+   GLOBAL MIDDLEWARE
+-------------------- */
+app.use(cookieParser());
+app.use(morgan("dev"));
+app.use(express.json({ limit: "100kb" }));
 app.use(
   cors({
-    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
+    origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
     credentials: true,
   })
 );
 
-// small debug middleware to print incoming path and body (only in non-prod)
+/* Debug middleware (dev only) */
 app.use((req, res, next) => {
-  if (process.env.NODE_ENV !== 'production') {
-    try {
-      console.log('[REQ DEBUG]', req.method, req.path, 'bodyKeys=', Object.keys(req.body || {}));
-    } catch (e) {
-      /* ignore debug logging errors */
-    }
+  if (process.env.NODE_ENV !== "production") {
+    console.log(
+      "[REQ DEBUG]",
+      req.method,
+      req.path,
+      "bodyKeys=",
+      Object.keys(req.body || {})
+    );
   }
   next();
 });
 
+/* --------------------
+   DATABASE
+-------------------- */
 async function connectDB() {
-  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/taxpal';
+  const uri = process.env.MONGO_URI || "mongodb://localhost:27017/taxpal";
   try {
-    // await connection
-    await mongoose.connect(uri, {
-      // modern defaults; no deprecated flags here
-    });
-
-    console.log('MongoDB connected');
-    // Print connection details so we know exactly which DB/host we're using
-    console.log('Mongoose connection db name:', mongoose.connection && mongoose.connection.name);
-    console.log('Mongoose connection host:', mongoose.connection && mongoose.connection.host);
+    await mongoose.connect(uri);
+    console.log("MongoDB connected");
+    console.log("DB:", mongoose.connection.name);
   } catch (err) {
-    console.error('MongoDB connection error:', err && err.message ? err.message : err);
+    console.error("MongoDB connection error:", err.message);
     process.exit(1);
   }
 }
 
+/* --------------------
+   SERVER BOOTSTRAP
+-------------------- */
 async function startServer() {
   await connectDB();
 
-  // mount routers (wrapped in try/catch so server still starts even if router has issues)
-  try {
-    const otpRouter = require('./routes/otp');
-    app.use('/api/otp', otpRouter);
-    console.log('Mounted /api/otp');
-  } catch (e) {
-    console.log('No ./routes/otp mounted (file missing or error):', e && e.code ? e.code : e.message || e);
-  }
+  /* PUBLIC ROUTES */
+  app.use("/api/otp", require("./routes/otp"));
+  console.log("Mounted /api/otp");
 
-  try {
-    const authRouter = require('./routes/auth');
-    app.use('/api/auth', authRouter);
-    console.log('Mounted /api/auth');
-  } catch (e) {
-    console.log('No ./routes/auth mounted (file missing or error):', e && e.code ? e.code : e.message || e);
-  }
+  app.use("/api/auth", require("./routes/auth"));
+  console.log("Mounted /api/auth");
 
-  // health route (optional) — quick sanity check
-  app.get('/health', (req, res) => res.json({ ok: true, env: process.env.NODE_ENV || 'development' }));
+  /* PROTECTED ROUTES */
+  app.use("/api/categories", auth, require("./routes/categories"));
+  console.log("Mounted /api/categories");
 
-  // fallback 404
-  app.use((req, res) => res.status(404).send('Cannot ' + req.method + ' ' + req.path));
+  app.use("/api/transactions", auth, require("./routes/transactions"));
+  console.log("Mounted /api/transactions");
 
-  // start listening
+  app.use("/api/dashboard", auth, require("./routes/dashboard"));
+  console.log("Mounted /api/dashboard");
+
+  app.use("/api/budgets", auth, require("./routes/budgets"));
+  console.log("Mounted /api/budgets");
+
+  app.use("/api/tax", taxRoutes);
+
+  /* HEALTH CHECK */
+  app.get("/health", (req, res) =>
+    res.json({ ok: true, env: process.env.NODE_ENV || "development" })
+  );
+
+  /* 404 FALLBACK */
+  app.use((req, res) =>
+    res.status(404).send(`Cannot ${req.method} ${req.path}`)
+  );
+
+  /* START SERVER */
   app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
-// run
-startServer().catch((err) => {
-  console.error('Failed to start server:', err && (err.stack || err));
+/* --------------------
+   START
+-------------------- */
+startServer().catch(err => {
+  console.error("Failed to start server:", err.stack || err);
   process.exit(1);
 });

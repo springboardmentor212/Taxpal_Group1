@@ -1,0 +1,39 @@
+/* =========================
+   MODAL OVERLAY
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; /* stronger than sidebar */
+}
+
+/* =========================
+   MODAL CARD
+========================= */
+.modal-card {
+  width: 420px;
+  max-width: 95%;
+  background: linear-gradient(180deg, #141414, #101010);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation: modalIn 0.2s ease-out;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

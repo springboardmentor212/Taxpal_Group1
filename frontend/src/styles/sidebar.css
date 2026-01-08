@@ -1,0 +1,142 @@
+/* ===============================
+   SIDEBAR (FIXED & STABLE)
+=============================== */
+.sidebar {
+  width: 240px;
+  min-width: 240px;        /* 🔥 prevents collapse */
+  max-width: 240px;
+
+  background: #0f0f10;
+  padding: 24px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;        /* sidebar stays fixed */
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  z-index: 100;
+  overflow-x: hidden;     /* prevent horizontal scroll */
+  box-sizing: border-box;
+}
+
+/* Make sure children don't break layout */
+.sidebar * {
+  box-sizing: border-box;
+}
+
+/* ===============================
+   BRAND
+=============================== */
+.brand {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.brand span {
+  color: #ff3b3b;
+}
+
+/* ===============================
+   NAVIGATION
+=============================== */
+.sidebar nav {
+  flex: 1;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 12px;
+  color: #9aa3b2;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background: rgba(255,59,59,0.1);
+  color: #fff;
+}
+
+/* ===============================
+   USER SECTION
+=============================== */
+.sidebar-user {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 16px;
+}
+
+/* User info row */
+.user-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Avatar */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ff3b3b, #b30000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Text wrapper (IMPORTANT) */
+.user-text {
+  min-width: 0;            /* 🔥 allows email wrapping */
+}
+
+/* Username */
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Email (WRAP FIX) */
+.email {
+  font-size: 12px;
+  color: #9aa3b2;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* ===============================
+   USER ACTIONS
+=============================== */
+.user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.user-actions .link {
+  flex: 1;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  color: #9aa3b2;
+}
+
+.user-actions .link:hover {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.user-actions .danger {
+  color: #ff3b3b;
+}

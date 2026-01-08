@@ -1,0 +1,63 @@
+.settings-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.settings-sidebar {
+  background: #0f0f10;
+  padding: 20px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+.settings-sidebar a {
+  display: block;
+  padding: 12px;
+  color: #9aa3b2;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.settings-sidebar a.active,
+.settings-sidebar a:hover {
+  background: rgba(255,59,59,0.1);
+  color: #fff;
+}
+
+.settings-main {
+  padding: 28px;
+}
+
+.category-form {
+  display: flex;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.category-chip .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.category-chip button {
+  background: none;
+  border: none;
+  color: #ff3b3b;
+  cursor: pointer;
+}
