@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import CategorySettings from "./pages/CategorySettings";
 import Logout from "./pages/Logout";
 import TaxCalculator from "./pages/TaxCalculator";
+import Reports from "./pages/Reports";
 
 /* ---------- Layout ---------- */
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/budgets" element={<Budgets />} />
           <Route path="/tax" element={<TaxCalculator />} />
+          <Route path="/reports" element={<Reports />} />
 
           {/* SETTINGS (NESTED) */}
           <Route path="/settings" element={<Settings />}>

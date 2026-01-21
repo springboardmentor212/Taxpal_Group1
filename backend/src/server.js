@@ -79,6 +79,9 @@ async function startServer() {
   app.use("/api/budgets", auth, require("./routes/budgets"));
   console.log("Mounted /api/budgets");
 
+  app.use("/api/reports", auth, require("./routes/reports"));
+  console.log("Mounted /api/reports");
+
   app.use("/api/tax", taxRoutes);
 
   /* HEALTH CHECK */

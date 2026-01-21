@@ -3,7 +3,7 @@ const BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 /* ------------------------
    Core request helper
 ------------------------ */
-async function request(path, opts = {}) {
+export async function request(path, opts = {}) {
   const token = localStorage.getItem("taxpal_token");
 
   const res = await fetch(`${BASE}${path}`, {

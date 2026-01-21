@@ -17,6 +17,7 @@ export default function Sidebar() {
         <NavLink to="/transactions">Transactions</NavLink>
         <NavLink to="/budgets">Budgets</NavLink>
         <NavLink to="/tax">Tax Estimator</NavLink>
+        <NavLink to="/reports">Reports</NavLink>
         <NavLink to="/settings/profile">Settings</NavLink>
         
       </nav>

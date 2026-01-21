@@ -38,29 +38,63 @@ body {
 }
 
 /* ===============================
-   PUBLIC / AUTH PAGE WRAPPER
+   PAGE WRAPPER (GLOBAL)
+   ✅ FIXED FOR DASHBOARD + REPORTS
 =============================== */
 .page {
-  display: flex;
-  justify-content: center;
-  padding: 32px 24px;
   width: 100%;
+  padding: 32px 24px;
   overflow-x: hidden;
 }
 
+/*===============================
+   AUTH PAGE CENTERING (RESTORED)
+=============================== */
+/*.auth-page .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-page .card {
+  max-width: 420px;
+  padding: 34px;
+}
+*/
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-page .page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-page .card {
+  max-width: 420px;
+  padding: 34px;
+}
+
+
 /* ===============================
-   CARD (AUTH / SPLASH)
+   CARD (GLOBAL – AUTH + DASHBOARD)
+   ✅ REMOVED WIDTH LOCK
 =============================== */
 .card {
   width: 100%;
-  max-width: 420px;
   background: linear-gradient(
     180deg,
     rgba(255,255,255,0.02),
     rgba(255,255,255,0.01)
   );
   border-radius: 14px;
-  padding: 34px;
+  padding: 24px;
   border: 1px solid rgba(255,255,255,0.03);
   box-shadow: 0 6px 30px rgba(0,0,0,0.6);
 }
@@ -91,8 +125,7 @@ body {
    BUTTONS
 =============================== */
 .btn {
-  width: 100%;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 10px;
   border: none;
   font-weight: 700;
@@ -105,14 +138,19 @@ body {
   color: #fff;
 }
 
+.btn.secondary {
+  background: rgba(255,255,255,0.05);
+  color: #e6eef6;
+}
+
 /* ===============================
    TEXT HELPERS
 =============================== */
 .muted {
   color: var(--muted);
-  text-align: center;
   margin-top: 12px;
 }
+
 .card a {
   color: var(--accent);
   font-weight: 600;
@@ -121,42 +159,41 @@ body {
 .card a:hover {
   text-decoration: underline;
 }
+
 /* ===============================
    DARK THEME SELECT DROPDOWN
 =============================== */
 .select-custom,
 select {
-  background-color: #0f0f10;       /* dark background */
-  color: #e6eef6;                  /* light text */
+  background-color: #0f0f10;
+  color: #e6eef6;
   border: 1px solid rgba(255,255,255,0.15);
 }
 
-/* Dropdown options */
 select option {
-  background-color: #0f0f10;       /* 🔥 THIS FIXES WHITE BG */
+  background-color: #0f0f10;
   color: #e6eef6;
 }
 
-/* Hover / selected option (best effort) */
 select option:checked,
 select option:hover {
   background-color: #1a1a1a;
   color: #ffffff;
 }
 
-/* Focus state */
 select:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 2px rgba(255,59,59,0.25);
 }
 
-
+/* ===============================
+   TOGGLES
+=============================== */
 .chart-toggle,
 .category-toggle,
 .filter-toggle {
   display: inline-flex;
-  gap: 0;
   background: rgba(255,255,255,0.04);
   padding: 4px;
   border-radius: 12px;
@@ -184,11 +221,9 @@ select:focus {
   box-shadow: 0 6px 18px rgba(255,59,59,0.35);
 }
 
-
 /* ===============================
-   SPLASH SCREEN (FINAL FIX)
+   SPLASH SCREEN
 =============================== */
-
 .splash-page {
   position: fixed;
   inset: 0;
@@ -201,15 +236,14 @@ select:focus {
   z-index: 9999;
 }
 
-/* Card animation */
 .splash-card {
   text-align: center;
   animation: splashEnter 1.2s ease forwards;
   opacity: 0;
   transform: scale(0.92);
+  max-width: 420px;
 }
 
-/* Logo */
 .logo-wrap {
   display: flex;
   justify-content: center;
@@ -222,7 +256,6 @@ select:focus {
   animation: logoPop 0.9s ease forwards;
 }
 
-/* Brand text */
 .brand {
   font-size: 34px;
   font-weight: 800;
@@ -236,7 +269,6 @@ select:focus {
   color: var(--accent);
 }
 
-/* Tagline */
 .tagline {
   font-size: 14px;
   color: var(--muted);
@@ -248,7 +280,6 @@ select:focus {
 /* ===============================
    ANIMATIONS
 =============================== */
-
 @keyframes splashEnter {
   to {
     opacity: 1;

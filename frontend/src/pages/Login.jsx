@@ -46,7 +46,8 @@ export default function Login() {
   }
 
   return (
-    <div className="page full-center">
+    <div className="auth-page">
+    <div className="page">
       <div className="card" style={{ maxWidth: 520 }}>
         {/* Logo */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
@@ -69,6 +70,7 @@ export default function Login() {
             />
           </div>
         </div>
+        
 
         <h2
           className="card-title"
@@ -131,6 +133,7 @@ export default function Login() {
           </Link>
         </p>
       </div>
+    </div>
     </div>
   );
 }
