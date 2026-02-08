@@ -1,0 +1,162 @@
+/* src/pages/TaxCalculator.css */
+
+.tax-page {
+  padding: 24px;
+}
+
+.page-title {
+  margin-bottom: 20px;
+}
+
+.page-subtitle{
+  margin-bottom: 12px
+}
+
+/* Two-column layout */
+.tax-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Card layout */
+.tax-card {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+/* Titles */
+.card-title {
+  margin-bottom: 16px;
+}
+
+/* Form grid inside left card */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Make Gross Income span full row */
+.form-field.full-width {
+  grid-column: span 2;
+}
+
+/* Section labels inside form */
+.form-section-label {
+  grid-column: span 2;
+  margin: 12px 0 4px;
+
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 6px;
+}
+
+/* Single field */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-field label {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.form-field input,
+.form-field select {
+   padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #0f0f0f;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-field input::placeholder {
+    align-content: justify;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-field input:hover,
+.form-field select:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: #e11d48; /* same red accent */
+  box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.25);
+}
+
+.form-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.form-field label {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Button */
+.calculate-btn {
+  margin-top: 28px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+.calculate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Error & placeholder */
+.error-text {
+  margin-top: 12px;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Calendar spacing */
+.calendar-section {
+  margin-top: 32px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tax-grid {
+    grid-template-columns: 1fr;
+  }
+}

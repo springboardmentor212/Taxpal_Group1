@@ -1,0 +1,105 @@
+/* ===============================
+   TRANSACTIONS TABLE
+=============================== */
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  background: rgba(20,20,20,0.6);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* HEADERS */
+.tx-table th {
+  padding: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9aa3b2;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+/* CELLS */
+.tx-table td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid rgba(255,255,255,0.05);
+  vertical-align: middle;
+}
+
+/* REMOVE LAST COLUMN BORDER */
+.tx-table th:last-child,
+.tx-table td:last-child {
+  border-right: none;
+}
+
+/* ROW HOVER */
+.tx-table tbody tr:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+/* ===============================
+   AMOUNT COLORS
+=============================== */
+.tx-table td.amount {
+  font-weight: 700;
+}
+
+.tx-table td.amount.income {
+  color: #2ecc71;
+}
+
+.tx-table td.amount.expense {
+  color: #ff3b3b;
+}
+
+/* ===============================
+   TYPE PILL
+=============================== */
+.pill {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.pill.income {
+  background: rgba(46, 204, 113, 0.18);
+  color: #2ecc71;
+}
+
+.pill.expense {
+  background: rgba(255, 59, 59, 0.18);
+  color: #ff3b3b;
+}
+
+/* ===============================
+   ACTION BUTTONS
+=============================== */
+.icon-btn {
+  background: rgba(255,255,255,0.06);
+  border: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #e6eef6;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-1px);
+}
+
+.icon-btn.danger {
+  color: #ff3b3b;
+}
+
+.icon-btn.danger:hover {
+  background: rgba(255,59,59,0.22);
+}

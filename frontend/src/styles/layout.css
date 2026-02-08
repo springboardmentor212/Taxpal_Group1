@@ -1,0 +1,103 @@
+/* ===============================
+   APP SHELL (ROOT)
+=============================== */
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  background: #0b0b0c;
+  color: #e6eef6;
+}
+
+/* ===============================
+   SIDEBAR (FIXED)
+=============================== */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+
+  background: linear-gradient(180deg, #0e0e0f, #121212);
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;        /* 🔥 FIXED */
+  top: 0;
+  left: 0;
+  height: 100vh;
+
+  z-index: 1000;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   LOGO
+=============================== */
+.logo {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: #ff3b3b;
+}
+
+/* ===============================
+   NAVIGATION
+=============================== */
+.sidebar nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #cfd8e3;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+  background: rgba(255,59,59,0.15);
+  color: white;
+}
+
+/* ===============================
+   SIDEBAR FOOTER
+=============================== */
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 16px;
+}
+
+.user-info small {
+  color: #9aa3b2;
+}
+
+/* ===============================
+   MAIN CONTENT (SCROLLS)
+=============================== */
+.app-main {
+  margin-left: 240px;              /* 🔥 OFFSET FOR SIDEBAR */
+  padding: 32px;
+  min-height: 100vh;
+
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   RESPONSIVE (MOBILE)
+=============================== */
+@media (max-width: 720px) {
+  .sidebar {
+    display: none;
+  }
+
+  .app-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+}

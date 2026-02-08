@@ -16,7 +16,7 @@ export default function ResetNew() {
 
   useEffect(() => {
     if (!token) {
-      setErr("Missing reset token. Please request a password reset again.");
+      setErr("Your reset link is invalid or expired. Please request a new one.");
     }
   }, [token]);
 
@@ -26,16 +26,22 @@ export default function ResetNew() {
     setMsg("");
 
     if (!token) return setErr("Missing reset token.");
-    if (newPassword.length < 8) return setErr("Password must be at least 8 characters.");
-    if (newPassword !== confirm) return setErr("Passwords do not match.");
+    if (newPassword.length < 8)
+      return setErr("Password must be at least 8 characters long.");
+    if (newPassword !== confirm)
+      return setErr("Passwords do not match.");
 
     setLoading(true);
     try {
       await resetPassword({ resetToken: token, newPassword });
-      setMsg("Password updated — redirecting to login...");
+      setMsg("Your password has been updated. Redirecting to login...");
       setTimeout(() => nav("/login"), 1200);
     } catch (err) {
-      setErr(err?.message || (err?.body && err.body.error) || "Failed to reset password");
+      setErr(
+        err?.message ||
+          (err?.body && err.body.error) ||
+          "Unable to reset password. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -44,32 +50,47 @@ export default function ResetNew() {
   return (
     <div className="page" style={{ alignItems: "center", paddingTop: 48 }}>
       <div className="card" style={{ width: 420 }}>
-        <h2 className="card-title" style={{ textAlign: "center" }}>Set new password</h2>
-        <p className="muted" style={{ textAlign: "center", marginBottom: 12 }}>
-          Enter a new password for your account.
+        <h2 className="card-title" style={{ textAlign: "center" }}>
+          Create a new password
+        </h2>
+
+        <p className="muted" style={{ textAlign: "center", marginBottom: 14 }}>
+          Choose a strong password to secure your TaxPal account.
         </p>
 
-        {err && <div className="error" style={{ marginBottom: 8 }}>{err}</div>}
-        {msg && <div className="muted" style={{ marginBottom: 8, color: "#2ecc71" }}>{msg}</div>}
+        {err && <div className="error">{err}</div>}
+        {msg && (
+          <div className="muted" style={{ color: "#2ecc71", marginBottom: 8 }}>
+            {msg}
+          </div>
+        )}
 
         <form onSubmit={handleSave}>
+          {/* New password */}
+          <label className="input-label">New password</label>
           <input
             type="password"
             className="input"
-            placeholder="New password (min 8 chars)"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
+
+          {/* Confirm password */}
+          <label className="input-label">Confirm new password</label>
           <input
             type="password"
             className="input"
-            placeholder="Confirm new password"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
           />
 
-          <button className="btn primary" type="submit" disabled={loading} style={{ marginTop: 12 }}>
-            {loading ? "Saving..." : "Save new password"}
+          <button
+            className="btn primary"
+            type="submit"
+            disabled={loading}
+            style={{ marginTop: 16 }}
+          >
+            {loading ? "Updating password…" : "Update password"}
           </button>
         </form>
       </div>
